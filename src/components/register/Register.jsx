@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/esm/Container'
 import Button from 'react-bootstrap/esm/Button'
 import Form from 'react-bootstrap/Form'
 import  Toast  from 'react-bootstrap/Toast'
+import ToastContainer  from 'react-bootstrap/ToastContainer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 
@@ -15,6 +16,8 @@ const Register = () => {
     const url_create_user = "http://localhost:4000/usuario/create";
     const [message, setMessage] = useState('');
     const [isError, setIsError] = useState(false);
+
+    const [showToast, setShowToast] = useState(false);
 
     const [name, setName] = useState('');
     const [validName, setValidName] = useState(false);
@@ -81,16 +84,19 @@ const Register = () => {
             if(!response.ok){
                 setMessage(`error al enviar al usuario ${res.error || res.statusText}`);
                 setIsError(true);
+                setShowToast(true);
             }
             else{
                 setMessage(`El usuario ${name} se ha creado y enviado correctamente`);
                 setIsError(false);
+                setShowToast(true);
             }
         }
         catch(err){
             console.log('error al enviar los datos', err);
             setMessage('error de conexion', err);
             setIsError(true);
+            setShowToast(true);
         }
     }
 
@@ -177,12 +183,22 @@ const Register = () => {
                 </div>
             </main>
         </header>
-        {/* Mostrar el mensaje de feedback */}
-            {message && (
-                <p style={{ color: isError ? 'red' : 'green', marginTop: '15px', fontWeight: 'bold' }}>
-                    {message}
-                </p>
-            )}
+        {/*Se encarga de mostrar el mensaje ya sea de error o de satisfactorio*/}
+        <ToastContainer
+            className='p-3'
+            position='bottom-end'
+            style={{zIndex: 1}}
+        >
+        <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
+            <Toast.Header>
+                <strong className="me-auto">{isError ? 'error':'satisfacftorio'}</strong>
+                <small>11 mins ago</small>
+            </Toast.Header>
+            <Toast.Body style={{color: "black"}} className={isError ? 'Danger':'Success'}>
+                {message}
+            </Toast.Body>
+        </Toast>
+        </ToastContainer>
     </Container>
   )
 }
