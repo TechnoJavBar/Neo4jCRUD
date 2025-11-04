@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./Home.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import ToastContainer from "react-bootstrap/ToastContainer";
+import Toast from "react-bootstrap/Toast";
 
 const Home = () => {
   const url_get = "http://localhost:4000/usuarios";
@@ -11,6 +13,8 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const [isErrorDelete, setIsErrorDelete] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -47,13 +51,18 @@ const Home = () => {
   
       if (!response.ok) {
         setMessage(`Error al eliminar al usuario ${res.error || res.statusText}`);
+        setIsErrorDelete(true);
+        setShowToast(true);
       } else {
         setMessage("El usuario se ha eliminado correctamente");
         setUser((prevUsers) => prevUsers.filter((u) => u.username !== user.username));
+        setShowToast(true);
       }
     } catch (err) {
       console.log("Error al procesar la petición", err);
       setMessage("Error de conexión");
+      setIsErrorDelete(true);
+      setShowToast(true);
     }
   };
   
@@ -91,7 +100,23 @@ const Home = () => {
           </Card.Body>
         </Card>
       ))}
-      {message && <p style={{ marginTop: "10px" }}>{message}</p>}
+  
+      {/*Se encarga de mostrar el mensaje ya sea de error o de satisfactorio*/}
+        <ToastContainer
+            className='p-3'
+            position='bottom-end'
+            style={{zIndex: 1}}
+        >
+        <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
+            <Toast.Header>
+                <strong variant="me-auto">{isErrorDelete ? 'error':'satisfacftorio'}</strong>
+                <small>11 mins ago</small>
+            </Toast.Header>
+            <Toast.Body style={{color: "black"}} className={isErrorDelete ? 'Danger':'Success'}>
+                {message}
+            </Toast.Body>
+        </Toast>
+        </ToastContainer>
     </div>
   );
 };
