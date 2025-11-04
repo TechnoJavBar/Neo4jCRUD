@@ -194,7 +194,7 @@ const Register = () => {
                 <strong className="me-auto">{isError ? 'error':'satisfacftorio'}</strong>
                 <small>11 mins ago</small>
             </Toast.Header>
-            <Toast.Body style={{color: "black"}} className={isError ? 'Danger':'Success'}>
+            <Toast.Body style={{color: "black"}} variant={isError ? 'Danger':'Success'}>
                 {message}
             </Toast.Body>
         </Toast>
