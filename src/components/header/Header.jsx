@@ -40,6 +40,13 @@ const Header = () => {
         >
           Registrar producto
         </Button>
+        <Button
+          variant="info"
+          className="me-2"
+          onClick={() => handleNav("/proveedores")}
+        >
+          Proveedores
+        </Button>
       </Container>
     </Navbar>
   );
