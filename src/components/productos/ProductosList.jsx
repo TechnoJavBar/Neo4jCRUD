@@ -6,7 +6,7 @@ import { Table } from "react-bootstrap";
 
 export const ProductosList = () => {
   const url_get = "http://localhost:4000/productos";
-  const url_delete = "http://localhost:4000/productos/delete";
+  const url_delete = "http://localhost:4000/productosDelete";
 
   const [producto, setProducto] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -112,7 +112,7 @@ export const ProductosList = () => {
             {producto.map((prod, index) => {
               return (
                 <tr key={index}>
-                  <th scope="row">{prod.nombre}</th>
+                  <th scope="row">{prod.name}</th>
                   <td>{prod.idProducto}</td>
                   <td>{prod.categoria}</td>
                   <td>{prod.precio}</td>
