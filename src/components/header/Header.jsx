@@ -47,6 +47,13 @@ const Header = () => {
         >
           Proveedores
         </Button>
+        <Button
+          variant="info"
+          className="me-2"
+          onClick={() => handleNav("/productos")}
+        >
+          Productos
+        </Button>
       </Container>
     </Navbar>
   );
