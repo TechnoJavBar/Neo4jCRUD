@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
+import { Table } from "react-bootstrap";
 
 export const ProductosList = () => {
   const url_get = "http://localhost:4000/productos";
@@ -27,6 +27,7 @@ export const ProductosList = () => {
         }
 
         const data = await response.json();
+        console.log(data);
         setProducto(data);
       } catch (err) {
         console.error("Fallo al cargar los productos:", err);
@@ -92,21 +93,53 @@ export const ProductosList = () => {
   }
 
   return (
-    <div className="container">
-      <h2>Lista de productos</h2>
-      {producto.map((producto, index) => (
+    <main className="d-flex flex-column justify-content-center align-items-center">
+      <div className="d-flex flex-column align-items-center w-100 mt-5">
+        <h2>Lista de productos</h2>
+
+        <Table className="table table-striped table-hover w-75 mt-4">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Identificador</th>
+              <th scope="col">Categoría</th>
+              <th scope="col">precio</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {producto.map((prod, index) => {
+              return (
+                <tr key={index}>
+                  <th scope="row">{prod.nombre}</th>
+                  <td>{prod.idProducto}</td>
+                  <td>{prod.categoria}</td>
+                  <td>{prod.precio}</td>
+                  <td>{prod.stock}</td>
+                  <td>
+                    <Button variant="danger" onClick={() => handleDelete(prod)}>
+                      Eliminar
+                    </Button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+      </div>
+
+      {/* {producto.map((producto, index) => (
         <Card border="info" key={index} style={{ margin: "5px" }}>
           <Card.Header>{producto.nombre}</Card.Header>
           <Card.Body>
             <Card.Title>identificador: {producto.idProducto}</Card.Title>
             <Card.Text>categoría: {producto.categoria}</Card.Text>
             <Card.Text>stock: {producto.stock} uds</Card.Text>
-            <Button variant="danger" onClick={() => handleDelete(producto)}>
-              Eliminar
-            </Button>
+            
           </Card.Body>
         </Card>
-      ))}
+      ))} */}
 
       {/*Se encarga de mostrar el mensaje ya sea de error o de satisfactorio*/}
       <ToastContainer
@@ -134,6 +167,6 @@ export const ProductosList = () => {
           </Toast.Body>
         </Toast>
       </ToastContainer>
-    </div>
+    </main>
   );
 };
