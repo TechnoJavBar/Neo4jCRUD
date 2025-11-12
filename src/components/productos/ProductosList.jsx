@@ -112,7 +112,7 @@ export const ProductosList = () => {
             {producto.map((prod, index) => {
               return (
                 <tr key={index}>
-                  <th scope="row">{prod.name}</th>
+                  <th scope="row">{prod.nombre}</th>
                   <td>{prod.idProducto}</td>
                   <td>{prod.categoria}</td>
                   <td>{prod.precio}</td>
