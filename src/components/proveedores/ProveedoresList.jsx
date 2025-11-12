@@ -39,7 +39,8 @@ export const ProveedoresList = () => {
   }
 
   return (
-    <main>
+    <main className="d-flex flex-column justify-content-center align-items-center">
+      {/* Muestra los mensajes de error y exito */}
       <ToastContainer position="top-end" className="p-3">
         <Toast
           onClose={() => setShowToast(false)}
@@ -56,28 +57,28 @@ export const ProveedoresList = () => {
         </Toast>
       </ToastContainer>
 
-      <Table className="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Código proveedor</th>
-            <th scope="col">código país</th>
-          </tr>
-        </thead>
-        <tbody>
-          {proveedores.map((proveedor, index) => {
-            return (
+      <div className="d-flex flex-column align-items-center w-100 mt-5">
+        <h2>Lista de proveedores</h2>
+
+        <Table className="table table-striped table-hover w-75 mt-4">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Código proveedor</th>
+              <th scope="col">Código país</th>
+            </tr>
+          </thead>
+          <tbody>
+            {proveedores.map((proveedor, index) => (
               <tr key={index}>
-                <th scope="row">{proveedor.id}</th>
-                <td>{proveedor.nombre}</td>
+                <th scope="row">{proveedor.nombre}</th>
                 <td>{proveedor.codigoManufacturer}</td>
                 <td>{proveedor.paisGS1}</td>
               </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+            ))}
+          </tbody>
+        </Table>
+      </div>
     </main>
   );
 };
