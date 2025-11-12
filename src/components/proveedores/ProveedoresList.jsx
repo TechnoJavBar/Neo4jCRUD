@@ -67,7 +67,8 @@ export const ProveedoresList = () => {
 
       <div className="d-flex flex-column align-items-center w-100 mt-5">
         <h2>Lista de proveedores</h2>
-        //Buscador de proveedor
+
+        {/* //Buscador de proveedor */}
         <input
           type="text"
           className="form-control w-75 mb-4"
@@ -75,6 +76,7 @@ export const ProveedoresList = () => {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
+
         <Table className="table table-striped table-hover w-75 mt-4">
           <thead>
             <tr>
