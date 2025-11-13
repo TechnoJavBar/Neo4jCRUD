@@ -1,13 +1,128 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
+/* --------------------------- */
+/* Global Reset & Box Sizing   */
+/* --------------------------- */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
   font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+  transition: all 0.3s ease;
 }
 
-.app {
-  background-color: black;
-  color: white;
-  min-height: 100vh;
+body,
+html {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
 
+/* --------------------------- */
+/* App Container               */
+/* --------------------------- */
+.app {
+  background: linear-gradient(135deg, #0d1117 0%, #1c1f26 100%);
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --------------------------- */
+/* Full Screen Content         */
+/* --------------------------- */
+.app-content.full-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100vh - 60px);
+  /* Ajusta según altura del Header */
+  padding: 0;
+  overflow: auto;
+}
+
+/* --------------------------- */
+/* Headings & Text             */
+/* --------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #00d1b2;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: #cfcfcf;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+/* --------------------------- */
+/* Links                       */
+/* --------------------------- */
+a {
+  color: #00d1b2;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #00a99d;
+  text-decoration: underline;
+}
+
+/* --------------------------- */
+/* Scrollbar Custom            */
+/* --------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1c1f26;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00d1b2;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00a99d;
+}
+
+/* --------------------------- */
+/* Utility Classes             */
+/* --------------------------- */
+.text-center {
+  text-align: center;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
 }
