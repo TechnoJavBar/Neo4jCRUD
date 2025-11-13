@@ -1,6 +1,7 @@
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import "./Register.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState, useRef } from "react";
@@ -83,128 +84,96 @@ export const RegisterProveedor = () => {
   };
 
   return (
-    <Container>
-      <header>
-        <h4>Nuevo Proveedor</h4>
-        <main className="register-container">
-          <div className="register-layout">
-            <Form onSubmit={handleSubmit}>
-              <div className="row">
-                {/* Columna izquierda */}
-                <div className="col-md-6">
-                  <Form.Group className="mb-3" controlId="formBasicNombre">
-                    <Form.Label>
-                      Nombre:
-                      <span className={validNombre ? "valid" : "hide"}>
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          className="valid-icon"
-                        />
-                      </span>
-                      <span
-                        className={validNombre || !nombre ? "hide" : "valid"}
-                      >
-                        <FontAwesomeIcon
-                          icon={faTimes}
-                          className="invalid-icon"
-                        />
-                      </span>
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="ej: Producto A"
-                      ref={nombreRef}
-                      autoComplete="off"
-                      onChange={(e) => setNombre(e.target.value)}
-                      required
-                    />
-                  </Form.Group>
-                </div>
+    <Container className="d-flex justify-content-center align-items-center mt-4">
+      <Card className="p-3 shadow-sm rounded-4" style={{ width: "400px" }}>
+        <h5 className="text-center mb-3 fw-semibold text-info">
+          Registro de proveedor
+        </h5>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicNombre">
+            <Form.Label className="fw-medium small">
+              Nombre
+              <span className={validNombre ? "valid" : "hide"}>
+                <FontAwesomeIcon icon={faCheck} className="valid-icon ms-1" />
+              </span>
+              <span className={validNombre || !nombre ? "hide" : "valid"}>
+                <FontAwesomeIcon icon={faTimes} className="invalid-icon ms-1" />
+              </span>
+            </Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ej: producto SL"
+              ref={nombreRef}
+              autoComplete="off"
+              onChange={(e) => setNombre(e.target.value)}
+              required
+              className="rounded-3 p-2"
+            />
+          </Form.Group>
 
-                {/* Columna derecha */}
-                <div className="col-md-6">
-                  <Form.Group
-                    className="mb-3"
-                    controlId="formBasicCodigoManufacturer"
-                  >
-                    <Form.Label>
-                      Código Manufacturer:
-                      <span
-                        className={validCodigoManufacturer ? "valid" : "hide"}
-                      >
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          className="valid-icon"
-                        />
-                      </span>
-                      <span
-                        className={
-                          validCodigoManufacturer || !codigoManufacturer
-                            ? "hide"
-                            : "valid"
-                        }
-                      >
-                        <FontAwesomeIcon
-                          icon={faTimes}
-                          className="invalid-icon"
-                        />
-                      </span>
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="ej: MFR-12345"
-                      autoComplete="off"
-                      onChange={(e) => setCodigoManufacturer(e.target.value)}
-                      required
-                    />
-                  </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicCodigoManufacturer">
+            <Form.Label className="fw-medium small">
+              Código Manufacturer (código proveedor)
+              <span className={validCodigoManufacturer ? "valid" : "hide"}>
+                <FontAwesomeIcon icon={faCheck} className="valid-icon ms-1" />
+              </span>
+              <span
+                className={
+                  validCodigoManufacturer || !codigoManufacturer
+                    ? "hide"
+                    : "valid"
+                }
+              >
+                <FontAwesomeIcon icon={faTimes} className="invalid-icon ms-1" />
+              </span>
+            </Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ej: 0001"
+              autoComplete="off"
+              onChange={(e) => setCodigoManufacturer(e.target.value)}
+              required
+              className="rounded-3 p-2"
+            />
+          </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="formBasicCodigoGS1">
-                    <Form.Label>
-                      Código GS1:
-                      <span className={validCodigoGS1 ? "valid" : "hide"}>
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          className="valid-icon"
-                        />
-                      </span>
-                      <span
-                        className={
-                          validCodigoGS1 || !codigoGS1 ? "hide" : "valid"
-                        }
-                      >
-                        <FontAwesomeIcon
-                          icon={faTimes}
-                          className="invalid-icon"
-                        />
-                      </span>
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="ej: 08412345678903"
-                      autoComplete="off"
-                      onChange={(e) => setCodigoGS1(e.target.value)}
-                      required
-                    />
-                  </Form.Group>
-                </div>
-              </div>
+          <Form.Group className="mb-3" controlId="formBasicCodigoGS1">
+            <Form.Label className="fw-medium small">
+              Código GS1 (código país)
+              <span className={validCodigoGS1 ? "valid" : "hide"}>
+                <FontAwesomeIcon icon={faCheck} className="valid-icon ms-1" />
+              </span>
+              <span className={validCodigoGS1 || !codigoGS1 ? "hide" : "valid"}>
+                <FontAwesomeIcon icon={faTimes} className="invalid-icon ms-1" />
+              </span>
+            </Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ej: 840"
+              autoComplete="off"
+              onChange={(e) => setCodigoGS1(e.target.value)}
+              required
+              className="rounded-3 p-2"
+            />
+          </Form.Group>
 
-              <div className="text-center mt-3">
-                <Button
-                  disabled={
-                    !validNombre || !validCodigoManufacturer || !validCodigoGS1
-                  }
-                  variant="info"
-                  type="submit"
-                >
-                  Registrar producto
-                </Button>
-              </div>
-            </Form>
+          <div className="text-center mt-2">
+            <Button
+              disabled={
+                !validNombre || !validCodigoManufacturer || !validCodigoGS1
+              }
+              type="submit"
+              className="px-4 py-2 rounded-3 border-0 text-white fw-medium small"
+              style={{
+                background: "linear-gradient(135deg, #00c9a7 0%, #008dcf 100%)",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+              }}
+            >
+              Registrar
+            </Button>
           </div>
-        </main>
-      </header>
+        </Form>
+      </Card>
       <ToastContainer
         className="p-3"
         position="bottom-end"
