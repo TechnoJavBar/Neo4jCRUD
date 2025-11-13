@@ -12,17 +12,22 @@ import { RegisterProveedor } from "./components/register/RegisterProveedor.jsx";
 function App() {
   return (
     <div className="app">
+      {/* Header fijo */}
       <Header />
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/register/proveedor" element={<RegisterProveedor />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/productos" element={<ProductosList />} />
-          <Route path="/proveedores" element={<ProveedoresList />} />
-        </Route>
-      </Routes>
+
+      {/* Contenedor principal: ocupa toda la pantalla debajo del header */}
+      <main className="app-content full-screen">
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/register/proveedor" element={<RegisterProveedor />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/productos" element={<ProductosList />} />
+            <Route path="/proveedores" element={<ProveedoresList />} />
+          </Route>
+        </Routes>
+      </main>
     </div>
   );
 }
