@@ -41,10 +41,10 @@ export const ProductosList = () => {
   }, []);
 
   const handleDelete = async (producto) => {
-    console.log("Eliminando producto:", producto.idProducto);
+    console.log("Eliminando producto:", producto.codigoEAN);
 
     try {
-      const response = await fetch(`${url_delete}/${producto.idProducto}`, {
+      const response = await fetch(`${url_delete}/${producto.codigoEAN}`, {
         method: "DELETE",
       });
 
@@ -60,7 +60,7 @@ export const ProductosList = () => {
       } else {
         setMessage("El producto se ha eliminado correctamente");
         setProducto((prevProducto) =>
-          prevProducto.filter((u) => u.idProducto !== producto.idProducto)
+          prevProducto.filter((u) => u.codigoEAN !== producto.codigoEAN)
         );
         setShowToast(true);
       }
@@ -113,7 +113,7 @@ export const ProductosList = () => {
               return (
                 <tr key={index}>
                   <th scope="row">{prod.nombre}</th>
-                  <td>{prod.idProducto}</td>
+                  <td>{prod.codigoEAN}</td>
                   <td>{prod.categoria}</td>
                   <td>{prod.precio}</td>
                   <td>{prod.stock}</td>
@@ -128,19 +128,6 @@ export const ProductosList = () => {
           </tbody>
         </Table>
       </div>
-
-      {/* {producto.map((producto, index) => (
-        <Card border="info" key={index} style={{ margin: "5px" }}>
-          <Card.Header>{producto.nombre}</Card.Header>
-          <Card.Body>
-            <Card.Title>identificador: {producto.idProducto}</Card.Title>
-            <Card.Text>categoría: {producto.categoria}</Card.Text>
-            <Card.Text>stock: {producto.stock} uds</Card.Text>
-            
-          </Card.Body>
-        </Card>
-      ))} */}
-
       {/*Se encarga de mostrar el mensaje ya sea de error o de satisfactorio*/}
       <ToastContainer
         className="p-3"
