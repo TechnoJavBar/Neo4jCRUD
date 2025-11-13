@@ -1,0 +1,15 @@
+.valid {
+    display: inline-block;
+}
+
+.hide {
+    display: none;
+}
+
+.invalid-icon {
+    color: red;
+}
+
+.valid-icon {
+    color: green;
+}
