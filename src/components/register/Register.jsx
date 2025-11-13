@@ -118,7 +118,7 @@ const Register = () => {
             stock: stock,
             idProducto: idProducto,
             precio: precio,
-            idProveedor: idProveedor,
+            codigoManufacturer: idProveedor,
             paisGS1: proveedorData[0].paisGS1, // ✅ ahora sí tienes los datos correctos
           }),
         });
