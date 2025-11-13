@@ -43,6 +43,13 @@ const Header = () => {
         <Button
           variant="info"
           className="me-2"
+          onClick={() => handleNav("/register/proveedor")}
+        >
+          Registrar proveedor
+        </Button>
+        <Button
+          variant="info"
+          className="me-2"
           onClick={() => handleNav("/proveedores")}
         >
           Proveedores
