@@ -151,231 +151,275 @@ const Register = () => {
   };
 
   return (
-    <Container>
-      <header>
-        <h4>Nuevo Producto</h4>
-        <main className="register-container">
-          <div className="register-layout">
-            <Form onSubmit={handleSubmit}>
-              <div className="row">
-                {/* Columna izquierda */}
-                <div className="col-md-6">
-                  <Form.Group className="mb-3" controlId="formBasicNombre">
-                    <Form.Label>
-                      Nombre:
-                      <span className={validNombre ? "valid" : "hide"}>
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          className="valid-icon"
-                        />
-                      </span>
-                      <span
-                        className={validNombre || !nombre ? "hide" : "valid"}
-                      >
-                        <FontAwesomeIcon
-                          icon={faTimes}
-                          className="invalid-icon"
-                        />
-                      </span>
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="ej: Tomate"
-                      ref={nombreRef}
-                      autoComplete="off"
-                      onChange={(e) => setNombre(e.target.value)}
-                      required
-                    />
-                  </Form.Group>
+    <Container
+      fluid
+      className="d-flex justify-content-center align-items-start py-3"
+      style={{
+        background: "linear-gradient(135deg, #e0f7fa 0%, #f1f8e9 100%)",
+        minHeight: "89vh",
+      }}
+    >
+      <div
+        className="shadow-sm rounded-4 p-3"
+        style={{
+          width: "100%",
+          maxWidth: "640px",
+          backgroundColor: "#ffffff",
+          border: "1px solid #dce6e0",
+        }}
+      >
+        <h6 className="text-center mb-3 fw-bold" style={{ color: "#00796b" }}>
+          Registrar producto
+        </h6>
 
-                  <Form.Group className="mb-3" controlId="formBasicCategoria">
-                    <Form.Label>
-                      Categoría:
-                      <span className={validCategoria ? "valid" : "hide"}>
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          className="valid-icon"
-                        />
-                      </span>
-                      <span
-                        className={
-                          validCategoria || !categoria ? "hide" : "valid"
-                        }
-                      >
-                        <FontAwesomeIcon
-                          icon={faTimes}
-                          className="invalid-icon"
-                        />
-                      </span>
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Ej: Verduras"
-                      autoComplete="off"
-                      onChange={(e) => setCategoria(e.target.value)}
-                      required
+        <Form onSubmit={handleSubmit}>
+          <div className="row">
+            {/* Columna izquierda */}
+            <div className="col-md-6">
+              <Form.Group className="mb-2" controlId="formBasicNombre">
+                <Form.Label className="fw-semibold small text-teal">
+                  Nombre:
+                  <span className={validNombre ? "valid" : "hide"}>
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      className="valid-icon ms-1"
                     />
-                  </Form.Group>
-
-                  <Form.Group className="mb-3" controlId="formBasicStock">
-                    <Form.Label>
-                      Stock:
-                      <span className={validStock ? "valid" : "hide"}>
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          className="valid-icon"
-                        />
-                      </span>
-                      <span className={validStock || !stock ? "hide" : "valid"}>
-                        <FontAwesomeIcon
-                          icon={faTimes}
-                          className="invalid-icon"
-                        />
-                      </span>
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="ej: 100"
-                      autoComplete="off"
-                      onChange={(e) => setStock(e.target.value)}
-                      required
+                  </span>
+                  <span className={validNombre || !nombre ? "hide" : "valid"}>
+                    <FontAwesomeIcon
+                      icon={faTimes}
+                      className="invalid-icon ms-1"
                     />
-                  </Form.Group>
-                </div>
+                  </span>
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Ej: Tomate"
+                  ref={nombreRef}
+                  autoComplete="off"
+                  onChange={(e) => setNombre(e.target.value)}
+                  required
+                  className="rounded-3 p-2 border-0"
+                  style={{
+                    backgroundColor: "#f0fdf4",
+                    fontSize: "0.85rem",
+                    color: "#333",
+                  }}
+                />
+              </Form.Group>
 
-                {/* Columna derecha */}
-                <div className="col-md-6">
-                  <Form.Group className="mb-3" controlId="formBasicPrecio">
-                    <Form.Label>
-                      Precio:
-                      <span className={validPrecio ? "valid" : "hide"}>
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          className="valid-icon"
-                        />
-                      </span>
-                      <span
-                        className={validPrecio || !precio ? "hide" : "valid"}
-                      >
-                        <FontAwesomeIcon
-                          icon={faTimes}
-                          className="invalid-icon"
-                        />
-                      </span>
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="ej: 10.50"
-                      autoComplete="off"
-                      onChange={(e) => setPrecio(e.target.value)}
-                      required
+              <Form.Group className="mb-2" controlId="formBasicCategoria">
+                <Form.Label className="fw-semibold small text-teal">
+                  Categoría:
+                  <span className={validCategoria ? "valid" : "hide"}>
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      className="valid-icon ms-1"
                     />
-                  </Form.Group>
-
-                  <Form.Group className="mb-3" controlId="formBasicIdProducto">
-                    <Form.Label>
-                      ID producto:
-                      <span className={validIdProducto ? "valid" : "hide"}>
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          className="valid-icon"
-                        />
-                      </span>
-                      <span
-                        className={
-                          validIdProducto || !idProducto ? "hide" : "valid"
-                        }
-                      >
-                        <FontAwesomeIcon
-                          icon={faTimes}
-                          className="invalid-icon"
-                        />
-                      </span>
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="ej: 001"
-                      autoComplete="off"
-                      onChange={(e) => setIdProducto(e.target.value)}
-                      required
+                  </span>
+                  <span
+                    className={validCategoria || !categoria ? "hide" : "valid"}
+                  >
+                    <FontAwesomeIcon
+                      icon={faTimes}
+                      className="invalid-icon ms-1"
                     />
-                  </Form.Group>
+                  </span>
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Ej: Verduras"
+                  autoComplete="off"
+                  onChange={(e) => setCategoria(e.target.value)}
+                  required
+                  className="rounded-3 p-2 border-0"
+                  style={{
+                    backgroundColor: "#f0fdf4",
+                    fontSize: "0.85rem",
+                    color: "#333",
+                  }}
+                />
+              </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="formBasicProveedor">
-                    <Form.Label>
-                      ID proveedor:
-                      <span className={validIdProveedor ? "valid" : "hide"}>
-                        <FontAwesomeIcon
-                          icon={faCheck}
-                          className="valid-icon"
-                        />
-                      </span>
-                      <span
-                        className={
-                          validIdProveedor || !idProveedor ? "hide" : "valid"
-                        }
-                      >
-                        <FontAwesomeIcon
-                          icon={faTimes}
-                          className="invalid-icon"
-                        />
-                      </span>
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="ej: 100"
-                      autoComplete="off"
-                      onChange={(e) => setIdProveedor(e.target.value)}
-                      required
+              <Form.Group className="mb-2" controlId="formBasicStock">
+                <Form.Label className="fw-semibold small text-teal">
+                  Stock:
+                  <span className={validStock ? "valid" : "hide"}>
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      className="valid-icon ms-1"
                     />
-                  </Form.Group>
-                </div>
-              </div>
+                  </span>
+                  <span className={validStock || !stock ? "hide" : "valid"}>
+                    <FontAwesomeIcon
+                      icon={faTimes}
+                      className="invalid-icon ms-1"
+                    />
+                  </span>
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Ej: 100"
+                  autoComplete="off"
+                  onChange={(e) => setStock(e.target.value)}
+                  required
+                  className="rounded-3 p-2 border-0"
+                  style={{
+                    backgroundColor: "#f0fdf4",
+                    fontSize: "0.85rem",
+                    color: "#333",
+                  }}
+                />
+              </Form.Group>
+            </div>
 
-              <div className="text-center mt-3">
-                <Button
-                  disabled={
-                    !validNombre ||
-                    !validCategoria ||
-                    !validStock ||
-                    !validPrecio ||
-                    !validIdProveedor ||
-                    !validIdProducto
-                  }
-                  variant="info"
-                  type="submit"
-                >
-                  Crear producto
-                </Button>
-              </div>
-            </Form>
+            {/* Columna derecha */}
+            <div className="col-md-6">
+              <Form.Group className="mb-2" controlId="formBasicPrecio">
+                <Form.Label className="fw-semibold small text-teal">
+                  Precio:
+                  <span className={validPrecio ? "valid" : "hide"}>
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      className="valid-icon ms-1"
+                    />
+                  </span>
+                  <span className={validPrecio || !precio ? "hide" : "valid"}>
+                    <FontAwesomeIcon
+                      icon={faTimes}
+                      className="invalid-icon ms-1"
+                    />
+                  </span>
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Ej: 10.50"
+                  autoComplete="off"
+                  onChange={(e) => setPrecio(e.target.value)}
+                  required
+                  className="rounded-3 p-2 border-0"
+                  style={{
+                    backgroundColor: "#f0fdf4",
+                    fontSize: "0.85rem",
+                    color: "#333",
+                  }}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-2" controlId="formBasicIdProducto">
+                <Form.Label className="fw-semibold small text-teal">
+                  ID producto:
+                  <span className={validIdProducto ? "valid" : "hide"}>
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      className="valid-icon ms-1"
+                    />
+                  </span>
+                  <span
+                    className={
+                      validIdProducto || !idProducto ? "hide" : "valid"
+                    }
+                  >
+                    <FontAwesomeIcon
+                      icon={faTimes}
+                      className="invalid-icon ms-1"
+                    />
+                  </span>
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Ej: 001"
+                  autoComplete="off"
+                  onChange={(e) => setIdProducto(e.target.value)}
+                  required
+                  className="rounded-3 p-2 border-0"
+                  style={{
+                    backgroundColor: "#f0fdf4",
+                    fontSize: "0.85rem",
+                    color: "#333",
+                  }}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-2" controlId="formBasicProveedor">
+                <Form.Label className="fw-semibold small text-teal">
+                  ID proveedor:
+                  <span className={validIdProveedor ? "valid" : "hide"}>
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      className="valid-icon ms-1"
+                    />
+                  </span>
+                  <span
+                    className={
+                      validIdProveedor || !idProveedor ? "hide" : "valid"
+                    }
+                  >
+                    <FontAwesomeIcon
+                      icon={faTimes}
+                      className="invalid-icon ms-1"
+                    />
+                  </span>
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Ej: 100"
+                  autoComplete="off"
+                  onChange={(e) => setIdProveedor(e.target.value)}
+                  required
+                  className="rounded-3 p-2 border-0"
+                  style={{
+                    backgroundColor: "#f0fdf4",
+                    fontSize: "0.85rem",
+                    color: "#333",
+                  }}
+                />
+              </Form.Group>
+            </div>
           </div>
-        </main>
-      </header>
-      {/*Se encarga de mostrar el mensaje ya sea de error o de satisfactorio*/}
+
+          <div className="text-center mt-2">
+            <Button
+              disabled={
+                !validNombre ||
+                !validCategoria ||
+                !validStock ||
+                !validPrecio ||
+                !validIdProveedor ||
+                !validIdProducto
+              }
+              type="submit"
+              className="px-4 py-2 rounded-3 border-0 text-white fw-semibold"
+              style={{
+                background: "linear-gradient(135deg, #26a69a, #00796b)",
+                fontSize: "0.85rem",
+              }}
+            >
+              Registrar
+            </Button>
+          </div>
+        </Form>
+      </div>
+
       <ToastContainer
         className="p-3"
         position="bottom-end"
-        style={{ zIndex: 1 }}
+        style={{ zIndex: 10 }}
       >
         <Toast
           onClose={() => setShowToast(false)}
           show={showToast}
           delay={3000}
           autohide
+          bg={isError ? "danger" : "success"}
         >
-          <Toast.Header>
-            <strong className="me-auto">
-              {isError ? "error" : "satisfacftorio"}
+          <Toast.Header closeButton={false}>
+            <strong className="me-auto text-capitalize">
+              {isError ? "Error" : "Satisfactorio"}
             </strong>
-            <small>11 mins ago</small>
+            <small>Hace un momento</small>
           </Toast.Header>
-          <Toast.Body
-            style={{ color: "black" }}
-            variant={isError ? "Danger" : "Success"}
-          >
-            {message}
-          </Toast.Body>
+          <Toast.Body className="text-white">{message}</Toast.Body>
         </Toast>
       </ToastContainer>
     </Container>

@@ -84,14 +84,33 @@ export const RegisterProveedor = () => {
   };
 
   return (
-    <Container className="d-flex justify-content-center align-items-center mt-4">
-      <Card className="p-3 shadow-sm rounded-4" style={{ width: "400px" }}>
-        <h5 className="text-center mb-3 fw-semibold text-info">
-          Registro de proveedor
-        </h5>
+    <Container
+      fluid
+      className="d-flex justify-content-center align-items-center py-4"
+      style={{
+        background: "linear-gradient(135deg, #e0f7fa 0%, #f1f8e9 100%)",
+        minHeight: "89vh",
+      }}
+    >
+      <Card
+        className="p-3 shadow-sm rounded-4"
+        style={{
+          width: "380px",
+          border: "1px solid #d1e7dd",
+          backgroundColor: "#ffffff",
+        }}
+      >
+        <h6 className="text-center mb-3 fw-bold" style={{ color: "#00796b" }}>
+          Registrar Proveedor
+        </h6>
+
         <Form onSubmit={handleSubmit}>
+          {/* Nombre */}
           <Form.Group className="mb-3" controlId="formBasicNombre">
-            <Form.Label className="fw-medium small">
+            <Form.Label
+              className="fw-medium small"
+              style={{ color: "#006d77" }}
+            >
               Nombre
               <span className={validNombre ? "valid" : "hide"}>
                 <FontAwesomeIcon icon={faCheck} className="valid-icon ms-1" />
@@ -102,17 +121,26 @@ export const RegisterProveedor = () => {
             </Form.Label>
             <Form.Control
               type="text"
-              placeholder="Ej: producto SL"
+              placeholder="Ej: Producto SL"
               ref={nombreRef}
               autoComplete="off"
               onChange={(e) => setNombre(e.target.value)}
               required
-              className="rounded-3 p-2"
+              className="rounded-3 p-2 border-0"
+              style={{
+                backgroundColor: "#f0fdf4",
+                fontSize: "0.85rem",
+                color: "#333",
+              }}
             />
           </Form.Group>
 
+          {/* Manufacturer */}
           <Form.Group className="mb-3" controlId="formBasicCodigoManufacturer">
-            <Form.Label className="fw-medium small">
+            <Form.Label
+              className="fw-medium small"
+              style={{ color: "#006d77" }}
+            >
               Código Manufacturer (código proveedor)
               <span className={validCodigoManufacturer ? "valid" : "hide"}>
                 <FontAwesomeIcon icon={faCheck} className="valid-icon ms-1" />
@@ -133,12 +161,21 @@ export const RegisterProveedor = () => {
               autoComplete="off"
               onChange={(e) => setCodigoManufacturer(e.target.value)}
               required
-              className="rounded-3 p-2"
+              className="rounded-3 p-2 border-0"
+              style={{
+                backgroundColor: "#f0fdf4",
+                fontSize: "0.85rem",
+                color: "#333",
+              }}
             />
           </Form.Group>
 
+          {/* GS1 */}
           <Form.Group className="mb-3" controlId="formBasicCodigoGS1">
-            <Form.Label className="fw-medium small">
+            <Form.Label
+              className="fw-medium small"
+              style={{ color: "#006d77" }}
+            >
               Código GS1 (código país)
               <span className={validCodigoGS1 ? "valid" : "hide"}>
                 <FontAwesomeIcon icon={faCheck} className="valid-icon ms-1" />
@@ -153,7 +190,12 @@ export const RegisterProveedor = () => {
               autoComplete="off"
               onChange={(e) => setCodigoGS1(e.target.value)}
               required
-              className="rounded-3 p-2"
+              className="rounded-3 p-2 border-0"
+              style={{
+                backgroundColor: "#f0fdf4",
+                fontSize: "0.85rem",
+                color: "#333",
+              }}
             />
           </Form.Group>
 
@@ -163,10 +205,10 @@ export const RegisterProveedor = () => {
                 !validNombre || !validCodigoManufacturer || !validCodigoGS1
               }
               type="submit"
-              className="px-4 py-2 rounded-3 border-0 text-white fw-medium small"
+              className="px-4 py-2 rounded-3 border-0 text-white fw-semibold"
               style={{
-                background: "linear-gradient(135deg, #00c9a7 0%, #008dcf 100%)",
-                boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+                background: "linear-gradient(135deg, #26a69a, #00796b)",
+                fontSize: "0.85rem",
               }}
             >
               Registrar
@@ -174,6 +216,8 @@ export const RegisterProveedor = () => {
           </div>
         </Form>
       </Card>
+
+      {/* Toast */}
       <ToastContainer
         className="p-3"
         position="bottom-end"
@@ -184,19 +228,15 @@ export const RegisterProveedor = () => {
           show={showToast}
           delay={3000}
           autohide
+          bg={isError ? "danger" : "success"}
         >
           <Toast.Header>
             <strong className="me-auto">
-              {isError ? "error" : "satisfacftorio"}
+              {isError ? "Error" : "Satisfactorio"}
             </strong>
-            <small>11 mins ago</small>
+            <small>Hace un momento</small>
           </Toast.Header>
-          <Toast.Body
-            style={{ color: "black" }}
-            variant={isError ? "Danger" : "Success"}
-          >
-            {message}
-          </Toast.Body>
+          <Toast.Body className="text-white">{message}</Toast.Body>
         </Toast>
       </ToastContainer>
     </Container>
