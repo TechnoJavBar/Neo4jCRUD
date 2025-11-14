@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSailboat } from "@fortawesome/free-solid-svg-icons";
+import { faBoxesStacked } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Header = () => {
           className="menu-link text-info"
           style={{ cursor: "pointer" }}
         >
-          <FontAwesomeIcon icon={faSailboat} />
+          <FontAwesomeIcon icon={faBoxesStacked} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
