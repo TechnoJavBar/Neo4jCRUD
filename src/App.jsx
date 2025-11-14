@@ -4,7 +4,7 @@ import Home from "./components/home/Home.jsx";
 import Layout from "./components/Layout.jsx";
 import Header from "./components/header/Header.jsx";
 import Register from "./components/register/Register.jsx";
-import Login from "./components/login/Login.jsx";
+import { Login } from "./components/login/Login.jsx";
 import { ProveedoresList } from "./components/proveedores/ProveedoresList.jsx";
 import { ProductosList } from "./components/productos/ProductosList.jsx";
 import { RegisterProveedor } from "./components/register/RegisterProveedor.jsx";
