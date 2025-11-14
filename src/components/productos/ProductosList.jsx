@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Button from "react-bootstrap/Button";
 import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
@@ -14,6 +14,7 @@ export const ProductosList = () => {
   const [message, setMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [isErrorDelete, setIsErrorDelete] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchProductos = async () => {
@@ -39,6 +40,16 @@ export const ProductosList = () => {
 
     fetchProductos();
   }, []);
+
+  const filteredProductos = useMemo(() => {
+    return producto.filter(
+      (p) =>
+        p.nombre?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.codigoEAN?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.categoria?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.precio?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [producto, searchTerm]);
 
   const handleDelete = async (producto) => {
     console.log("Eliminando producto:", producto.codigoEAN);
@@ -97,6 +108,14 @@ export const ProductosList = () => {
       <div className="d-flex flex-column align-items-center w-100 mt-5">
         <h2>Lista de productos</h2>
 
+        <input
+          type="text"
+          className="form-control w-75 mb-4"
+          placeholder="Buscar por nombre, código, categoría ..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+
         <Table className="table table-striped table-hover w-75 mt-4">
           <thead>
             <tr>
@@ -109,22 +128,31 @@ export const ProductosList = () => {
             </tr>
           </thead>
           <tbody>
-            {producto.map((prod, index) => {
-              return (
+            {filteredProductos.length > 0 ? (
+              filteredProductos.map((producto, index) => (
                 <tr key={index}>
-                  <th scope="row">{prod.nombre}</th>
-                  <td>{prod.codigoEAN}</td>
-                  <td>{prod.categoria}</td>
-                  <td>{prod.precio}</td>
-                  <td>{prod.stock}</td>
+                  <th scope="row">{producto.nombre}</th>
+                  <td>{producto.codigoEAN}</td>
+                  <td>{producto.categoria}</td>
+                  <td>{producto.precio}</td>
+                  <td>{producto.stock}</td>
                   <td>
-                    <Button variant="danger" onClick={() => handleDelete(prod)}>
+                    <Button
+                      variant="danger"
+                      onClick={() => handleDelete(producto)}
+                    >
                       Eliminar
                     </Button>
                   </td>
                 </tr>
-              );
-            })}
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" className="text-center text-muted">
+                  No se encontraron productos
+                </td>
+              </tr>
+            )}
           </tbody>
         </Table>
       </div>
